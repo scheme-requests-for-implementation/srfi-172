@@ -11,7 +11,7 @@
   (export
     - * ... / + < <= = => > >= abs acos and angle append apply asin
     assoc assq assv atan begin boolean? boolean=? bytevector
-    bytevector? bytevector-append bytevector-copy bytevector-copy!
+    bytevector? bytevector-append bytevector-copy
     bytevector-length bytevector-u8-ref caaaar caaadr
     caaar caadar caaddr caadr caar cadaar cadadr cadar caddar cadddr
     caddr cadr call/cc call-with-current-continuation
@@ -45,7 +45,7 @@
     string->number string->symbol string->utf8 string->vector string-append
     string-ci<? string-ci<=? string-ci=? string-ci>? string-ci>=?
     string-copy string-downcase string-foldcase
-    string-for-each string-length string-map string-ref string-set!
+    string-for-each string-length string-map string-ref
     string-upcase substring symbol? symbol=? symbol->string syntax-error
     syntax-rules tan truncate truncate/ truncate-quotient
     truncate-remainder unless unquote unquote-splicing utf8->string values
