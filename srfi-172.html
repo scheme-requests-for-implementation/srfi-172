@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>SRFI 172: Two Safer Subsets of R7RS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/srfi.css" type="text/css" />
+    <link href="/favicon.png" rel="icon" sizes="192x192" type="image/png" />
+  </head>
+
+  <body>
+
+<h1>Title</h1>
+
+Two Safer Subsets of R7RS
+
+<h1>Author</h1>
+
+John Cowan &lt;cowan@ccil.org&gt;
+
+<h1>Status</h1>
+
+TBD
+<h1>Abstract</h1>
+
+<p>This SRFI provides two libraries for use with R7RS that provide a
+way to sandbox the <code>eval</code> procedure to make it safer to use
+in evaluating Scheme expressions of doubtful provenance.  The intention
+is to call <code>eval</code>, passing it an S-expression representing a
+Scheme procedure and the environment defined by one of these libraries.
+Since code evaluated by <code>eval</code> runs in a null lexical
+environment, the resulting procedure can then be invoked with less
+concern about possible side effects.
+</p>
+
+<h1>Issues</h1>
+
+<ol>
+<li>Have any dangerous procedures from R7RS-small been included?</li>
+<li>Have any useful procedures from R7RS-small been omitted?</li>
+<li>Should more libraries from the Red or Tangerine Editions be added?</li>
+</ol>
+
+<h1>Rationale</h1>
+
+<p>
+The Scheme <code>eval</code> procedure, though part of the language
+since R5RS and commonplace in Scheme implementations long before that,
+has always been considered radically unsafe.  In the R6RS and R7RS,
+this is not entirely true.
+With the help of the <code>environment</code> procedure,
+code can be evaluated in an immutable global environment
+containing only specified libraries.  This SRFI provides
+two such environments, structured as R6RS or R7RS libraries.
+</p>
+
+<p>
+The intention is that the programmer call
+<code>(eval s (environment '(srfi 172)))</code>,
+where <i>s</i> is an S-expression 
+representing a procedure (typically a list whose
+car is <code>lambda</code> or <code>case-lambda</code>).
+The resulting procedure can be called with increased assurance that it
+will not gain access to or modify any Scheme object except those that
+are reachable from whatever is passed in as an argument.
+If <code>(srfi 172 functional)</code>
+is passed to <code>eval</code> in place of <code>(srfi 172)</code>,
+the procedure almost certainly cannot mutate anything at all.
+</p>
+
+Note that while I/O operations are provided by these libraries,
+the only kinds of ports that can be created are string and
+bytevector ports.
+</p>
+
+<h1>Specification</h1>
+
+The library <code>(srfi 172)</code> includes the following 299 variables
+and syntax keywords from R7RS-small.  They are believed to be safe, in the
+sense that they cannot affect or be affected by the outside world except
+via the arguments passed to them,
+or by memory exhaustion or CPU consumption.
+</p>
+<p>
+No distinctions are
+made between the invidual R7RS-small libraries, though implementations
+that lack one or more libraries would have to bind the missing names
+to calls on <code>error</code> or <code>syntax-error</code>.
+</p>
+
+<blockquote><code>
+-
+*
+...
+/
++
+<
+<=
+=
+=>
+>
+>=
+abs
+acos
+and
+angle
+append
+apply
+asin
+assoc
+assq
+assv
+atan
+begin
+boolean?
+boolean=?
+bytevector
+bytevector?
+bytevector-append
+bytevector-copy
+bytevector-copy!
+bytevector-length
+bytevector-u8-ref
+bytevector-u8-set!
+caaaar
+caaadr
+caaar
+caadar
+caaddr
+caadr
+caar
+cadaar
+cadadr
+cadar
+caddar
+cadddr
+caddr
+cadr
+call/cc
+call-with-current-continuation
+call-with-port
+call-with-values
+car
+case
+case-lambda
+cdaaar
+cdaadr
+cdaar
+cdadar
+cdaddr
+cdadr
+cdar
+cddaar
+cddadr
+cddar
+cdddar
+cddddr
+cdddr
+cddr
+cdr
+ceiling
+char?
+char<?
+char<=?
+char=?
+char>?
+char>=?
+char->integer
+char-alphabetic?
+char-ci<?
+char-ci<=?
+char-ci=?
+char-ci>?
+char-ci>=?
+char-downcase
+char-foldcase
+char-lower-case?
+char-numeric?
+char-upcase
+char-upper-case?
+char-whitespace?
+close-input-port
+close-output-port
+close-port
+complex?
+cond
+cond-expand
+cons
+cos
+define
+define-record-type
+define-syntax
+define-values
+delay
+delay-force
+denominator
+digit-value
+display
+do
+dynamic-wind
+else
+eof-object
+eof-object?
+eq?
+equal?
+eqv?
+error
+error-object?
+error-object-irritants
+error-object-message
+even?
+exact
+exact?
+exact-integer?
+exact-integer-sqrt
+exp
+expt
+finite?
+floor
+floor/
+floor-quotient
+floor-remainder
+force
+for-each
+gcd
+get-output-bytevector
+get-output-string
+guard
+if
+imag-part
+inexact
+inexact?
+infinite?
+input-port?
+integer?
+integer->char
+lambda
+lcm
+length
+let
+let*
+let*-values
+letrec
+letrec*
+letrec-syntax
+let-syntax
+let-values
+list
+list?
+list->string
+list->vector
+list-copy
+list-ref
+list-set!
+list-tail
+log
+magnitude
+make-bytevector
+make-list
+make-parameter
+make-polar
+make-promise
+make-rectangular
+make-string
+make-vector
+map
+max
+member
+memq
+memv
+min
+modulo
+nan?
+negative?
+newline
+not
+null?
+number?
+number->string
+numerator
+odd?
+open-input-bytevector
+open-input-string
+open-output-bytevector
+open-output-string
+or
+output-port?
+pair?
+peek-char
+peek-u8
+parameterize
+port?
+positive?
+procedure?
+promise?
+quasiquote
+quote
+quotient
+raise
+raise-continuable
+rational?
+rationalize
+read
+read-bytevector
+read-bytevector!
+read-char
+read-error?
+read-line
+read-string
+read-u8
+real?
+real-part
+remainder
+reverse
+round
+set!
+set-car!
+set-cdr!
+sin
+sqrt
+square
+string
+string?
+string<?
+string<=?
+string=?
+string>?
+string>=?
+string->list
+string->number
+string->symbol
+string->utf8
+string->vector
+string-append
+string-ci<?
+string-ci<=?
+string-ci=?
+string-ci>?
+string-ci>=?
+string-copy
+string-copy!
+string-downcase
+string-fill!
+string-foldcase
+string-for-each
+string-length
+string-map
+string-ref
+string-set!
+string-upcase
+substring
+symbol?
+symbol=?
+symbol->string
+syntax-error
+syntax-rules
+tan
+textual-port?
+truncate
+truncate/
+truncate-quotient
+truncate-remainder
+unless
+unquote
+unquote-splicing
+utf8->string
+values
+vector
+vector?
+vector->list
+vector->string
+vector-append
+vector-copy
+vector-copy!
+vector-fill!
+vector-for-each
+vector-length
+vector-map
+vector-ref
+vector-set!
+when
+with-exception-handler
+write
+write-bytevector
+write-char
+write-shared
+write-simple
+write-string
+write-u8
+zero?
+</code></blockquote>
+
+<p>
+The library <code>(srfi 172 functional)</code> exports all of
+the exports of <code>(srfi 172)</code>
+except for
+<ul>
+<li>the <code>set!</code> syntax keyword</li>
+<li>the 12 procedures whose names end in <code>!</code></li>
+<li>the 8 procedures whose names contain <code>port</code></li>
+<li>the 8 procedures whose names begin with <code>read</code></li>
+<li>the 2 procedures whose names begin with <code>peek</code></li>
+<li>the 6 procedures whose names begin with <code>write</code></li>
+</ul>
+It therefore exports 262 identifiers.
+</p>
+
+<p>
+A conforming implementation could be created entirely from this
+description.
+</p>
+
+<h1>Implementation</h1>
+
+<p>
+Implementations of the two libraries for Chibi can be found
+in the repository of this SRFI.
+They simply import the
+<code>(scheme base)</code>,
+<code>(scheme char)</code>,
+<code>(scheme complex)</code>,
+<code>(scheme cxr)</code>,
+<code>(scheme inexact)</code>,
+<code>(scheme lazy)</code>,
+<code>(scheme read)</code>,
+and
+<code>(scheme write)</code>
+libraries, and export the identifiers given above.
+</p>
+
+<h1>Acknowledgements</h1>
+
+
+<h1>Copyright</h1>
+Copyright &copy; John Cowan (2019).
+
+<p>
+  Permission is hereby granted, free of charge, to any person
+  obtaining a copy of this software and associated documentation files
+  (the "Software"), to deal in the Software without restriction,
+  including without limitation the rights to use, copy, modify, merge,
+  publish, distribute, sublicense, and/or sell copies of the Software,
+  and to permit persons to whom the Software is furnished to do so,
+  subject to the following conditions:
+
+<p>
+  The above copyright notice and this permission notice shall be
+  included in all copies or substantial portions of the Software.
+
+<p>
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+
+  <hr>
+  <address>Editor: <a href="mailto:srfi-editors+at+srfi+dot+schemers+dot+org">Arthur A. Gleckler</a></address></body></html>
