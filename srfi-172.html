@@ -39,6 +39,16 @@ environment, the resulting procedure can then be invoked with less
 concern about possible side effects.
 </p>
 
+<p><b>Use of these libraries does not provide any sort of safety
+guarantee.  There are still many loopholes uncaught, including
+attempts to process circular structure and over-allocation of memory.
+The claim is only that the probability of such an attack is reduced,
+not that it is eliminated.
+However, using these libraries is a simple provision that is easy to
+implement and easy to use.  For higher safety, it can readily be
+combined with other provisions.
+</b></p>
+
 <h1>Issues</h1>
 
 <ol>
@@ -71,7 +81,7 @@ will not gain access to or modify any Scheme object except those that
 are reachable from whatever is passed in as an argument.
 If <code>(srfi 172 functional)</code>
 is passed to <code>eval</code> in place of <code>(srfi 172)</code>,
-the procedure almost certainly cannot mutate anything at all.
+the procedure most likely cannot mutate anything at all.
 </p>
 
 Note that while I/O operations are provided by these libraries,
@@ -81,11 +91,10 @@ bytevector ports.
 
 <h1>Specification</h1>
 
-The library <code>(srfi 172)</code> includes the following 299 variables
+The library <code>(srfi 172)</code> includes the following 293 variables
 and syntax keywords from R7RS-small.  They are believed to be safe in the
 sense that they cannot affect or be affected by the outside world except
-via the arguments passed to them
-or by memory exhaustion or CPU consumption.
+through the arguments passed to them.
 </p>
 <p>
 No distinctions are
@@ -97,7 +106,6 @@ to calls on <code>error</code> or <code>syntax-error</code>.
 <blockquote><code>
 -
 *
-...
 /
 +
 &lt;
@@ -195,7 +203,6 @@ cons
 cos
 define
 define-record-type
-define-syntax
 define-values
 delay
 delay-force
@@ -248,8 +255,6 @@ let*
 let*-values
 letrec
 letrec*
-letrec-syntax
-let-syntax
 let-values
 list
 list?
@@ -358,8 +363,6 @@ substring
 symbol?
 symbol=?
 symbol-&gt;string
-syntax-error
-syntax-rules
 tan
 textual-port?
 truncate
@@ -399,7 +402,7 @@ zero?
 <p>
 The library <code>(srfi 172 functional)</code> exports all of
 the exports of <code>(srfi 172)</code>
-except for
+except for:
 <ul>
 <li>the <code>set!</code> syntax keyword</li>
 <li>the 12 procedures whose names end in <code>!</code></li>
@@ -408,7 +411,7 @@ except for
 <li>the 2 procedures whose names begin with <code>peek</code></li>
 <li>the 7 procedures whose names begin with <code>write</code></li>
 </ul>
-It therefore exports 262 identifiers.
+It therefore exports 255 identifiers.
 </p>
 
 <p>
