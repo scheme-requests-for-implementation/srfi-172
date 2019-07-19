@@ -9,7 +9,7 @@
   (import (scheme read))
   (import (scheme write))
   (export
-    - * ... / + < <= = => > >= abs acos and angle append apply asin
+    - * / + < <= = => > >= abs acos and angle append apply asin
     assoc assq assv atan begin boolean? boolean=? bytevector
     bytevector? bytevector-append bytevector-copy bytevector-copy!
     bytevector-length bytevector-u8-ref bytevector-u8-set! caaaar caaadr
@@ -22,15 +22,15 @@
     char-downcase char-foldcase char-lower-case? char-numeric? char-upcase
     char-upper-case? char-whitespace? close-input-port close-output-port
     close-port complex? cond cond-expand cons cos define define-record-type
-    define-syntax define-values delay delay-force denominator digit-value
+    define-values delay delay-force denominator digit-value
     display do dynamic-wind else eof-object eof-object? eq? equal? eqv?
     error error-object? error-object-irritants error-object-message
     even? exact exact? exact-integer? exact-integer-sqrt exp expt
     finite? floor floor/ floor-quotient floor-remainder force for-each
     gcd get-output-bytevector get-output-string guard if imag-part
     inexact inexact? infinite? input-port? integer? integer->char
-    lambda lcm length let let* let*-values letrec letrec* letrec-syntax
-    let-syntax let-values list list? list->string list->vector list-copy
+    lambda lcm length let let* let*-values letrec letrec*
+    let-values list list? list->string list->vector list-copy
     list-ref list-set! list-tail log magnitude make-bytevector make-list
     make-parameter make-polar make-promise make-rectangular make-string
     make-vector map max member memq memv min modulo nan? negative? newline
@@ -46,8 +46,8 @@
     string-ci<? string-ci<=? string-ci=? string-ci>? string-ci>=?
     string-copy string-copy! string-downcase string-fill! string-foldcase
     string-for-each string-length string-map string-ref string-set!
-    string-upcase substring symbol? symbol=? symbol->string syntax-error
-    syntax-rules tan textual-port? truncate truncate/ truncate-quotient
+    string-upcase substring symbol? symbol=? symbol->string
+    tan textual-port? truncate truncate/ truncate-quotient
     truncate-remainder unless unquote unquote-splicing utf8->string values
     vector vector? vector->list vector->string vector-append vector-copy
     vector-copy! vector-fill! vector-for-each vector-length vector-map
