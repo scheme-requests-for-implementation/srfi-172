@@ -19,8 +19,8 @@
     char-alphabetic? char-ci<? char-ci<=? char-ci=? char-ci>? char-ci>=?
     char-downcase char-foldcase char-lower-case? char-numeric? char-upcase
     char-upper-case? char-whitespace?
-    complex? cond cond-expand cons cos define define-record-type
-    define-values delay delay-force denominator digit-value
+    complex? cond cond-expand cons cos
+    delay delay-force denominator digit-value
     do dynamic-wind else eof-object eof-object? eq? equal? eqv?
     error error-object? error-object-irritants error-object-message
     even? exact exact? exact-integer? exact-integer-sqrt exp expt
