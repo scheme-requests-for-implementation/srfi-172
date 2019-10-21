@@ -6,8 +6,6 @@
   (import (scheme cxr))
   (import (scheme inexact))
   (import (scheme lazy))
-  (import (scheme read))
-  (import (scheme write))
   (export
     - * / + < <= = => > >= abs acos and angle append apply asin
     assoc assq assv atan begin boolean? boolean=? bytevector
@@ -21,9 +19,9 @@
     char-alphabetic? char-ci<? char-ci<=? char-ci=? char-ci>? char-ci>=?
     char-downcase char-foldcase char-lower-case? char-numeric? char-upcase
     char-upper-case? char-whitespace? close-input-port close-output-port
-    close-port complex? cond cond-expand cons cos define define-record-type
-    define-values delay delay-force denominator digit-value
-    display do dynamic-wind else eof-object eof-object? eq? equal? eqv?
+    close-port complex? cond cond-expand cons cos
+    delay delay-force denominator digit-value
+    do dynamic-wind else eof-object eof-object? eq? equal? eqv?
     error error-object? error-object-irritants error-object-message
     even? exact exact? exact-integer? exact-integer-sqrt exp expt
     finite? floor floor/ floor-quotient floor-remainder force for-each
@@ -38,7 +36,7 @@
     open-input-string open-output-bytevector open-output-string or
     output-port? pair? parameterize peek-char peek-u8 port? positive?
     procedure? promise? quasiquote quote quotient raise raise-continuable
-    rational? rationalize read read-bytevector read-bytevector! read-char
+    rational? rationalize read-bytevector read-bytevector! read-char
     read-error? read-line read-string read-u8 real? real-part remainder
     reverse round set! set-car! set-cdr! sin sqrt square string string?
     string<? string<=? string=? string>? string>=? string->list
@@ -51,5 +49,5 @@
     truncate-remainder unless unquote unquote-splicing utf8->string values
     vector vector? vector->list vector->string vector-append vector-copy
     vector-copy! vector-fill! vector-for-each vector-length vector-map
-    vector-ref vector-set! when with-exception-handler write write-bytevector
-    write-char write-shared write-simple write-string write-u8 zero?))
+    vector-ref vector-set! when with-exception-handler write-bytevector
+    write-char write-string write-u8 zero?))

@@ -6,8 +6,6 @@
   (import (scheme cxr))
   (import (scheme inexact))
   (import (scheme lazy))
-  (import (scheme read))
-  (import (scheme write))
   (export
     - * / + < <= = => > >= abs acos and angle append apply asin
     assoc assq assv atan begin boolean? boolean=? bytevector
@@ -21,9 +19,9 @@
     char-alphabetic? char-ci<? char-ci<=? char-ci=? char-ci>? char-ci>=?
     char-downcase char-foldcase char-lower-case? char-numeric? char-upcase
     char-upper-case? char-whitespace?
-    complex? cond cond-expand cons cos define define-record-type
-    define-values delay delay-force denominator digit-value
-    display do dynamic-wind else eof-object eof-object? eq? equal? eqv?
+    complex? cond cond-expand cons cos
+    delay delay-force denominator digit-value
+    do dynamic-wind else eof-object eof-object? eq? equal? eqv?
     error error-object? error-object-irritants error-object-message
     even? exact exact? exact-integer? exact-integer-sqrt exp expt
     finite? floor floor/ floor-quotient floor-remainder force for-each

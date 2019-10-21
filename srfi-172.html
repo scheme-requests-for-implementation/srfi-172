@@ -25,7 +25,6 @@ John Cowan &lt;cowan@ccil.org&gt;
   <li>Received: 2019/6/30</li>
   <li>60-day deadline: 2019/8/31</li>
   <li>Draft #1 published: 2019/7/2</li>
-  <li>Draft #2 published: 2019/7/19</li>
 </ul>
 
 <h1>Abstract</h1>
@@ -49,14 +48,6 @@ However, using these libraries is a simple provision that is easy to
 implement and easy to use.  For higher safety, it can readily be
 combined with other provisions.
 </b></p>
-
-<h1>Issues</h1>
-
-<ol>
-<li>Have any dangerous procedures from R7RS-small been included?</li>
-<li>Have any useful procedures from R7RS-small been omitted?</li>
-<li>Should more libraries from the Red or Tangerine Editions be added?</li>
-</ol>
 
 <h1>Rationale</h1>
 
@@ -85,14 +76,14 @@ is passed to <code>eval</code> in place of <code>(srfi 172)</code>,
 the procedure most likely cannot mutate anything at all.
 </p>
 
-Note that while I/O operations are provided by these libraries,
+<p>Note that while some I/O operations are provided by these libraries,
 the only kinds of ports that can be created are string and
 bytevector ports.
 </p>
 
 <h1>Specification</h1>
 
-The library <code>(srfi 172)</code> includes the following 293 variables
+The library <code>(srfi 172)</code> includes the following 284 variables
 and syntax keywords from R7RS-small.  They are believed to be safe in the
 sense that they cannot affect or be affected by the outside world except
 through the arguments passed to them.
@@ -102,6 +93,12 @@ No distinctions are
 made between the individual R7RS-small libraries, though implementations
 that lack one or more libraries would have to bind the missing names
 to calls on <code>error</code> or <code>syntax-error</code>.
+</p>
+
+<p>This SRFI does not require that the procedures and syntax definitions
+it exports are exactly the same as those exported by the various R7RS
+standard libraries.  In particular, wrappers or alternative versions that
+signal errors on implementation-specified behavior are recommended.
 </p>
 
 <blockquote><code>
@@ -202,14 +199,10 @@ cond
 cond-expand
 cons
 cos
-define
-define-record-type
-define-values
 delay
 delay-force
 denominator
 digit-value
-display
 do
 dynamic-wind
 else
@@ -312,7 +305,6 @@ raise
 raise-continuable
 rational?
 rationalize
-read
 read-bytevector
 read-bytevector!
 read-char
@@ -340,7 +332,6 @@ string&gt;?
 string&gt;=?
 string-&gt;list
 string-&gt;number
-string-&gt;symbol
 string-&gt;utf8
 string-&gt;vector
 string-append
@@ -390,11 +381,8 @@ vector-ref
 vector-set!
 when
 with-exception-handler
-write
 write-bytevector
 write-char
-write-shared
-write-simple
 write-string
 write-u8
 zero?
@@ -408,11 +396,11 @@ except for:
 <li>the <code>set!</code> syntax keyword</li>
 <li>the 12 procedures whose names end in <code>!</code></li>
 <li>the 8 procedures whose names contain <code>port</code></li>
-<li>the 8 procedures whose names begin with <code>read</code></li>
+<li>the 7 procedures whose names begin with <code>read</code></li>
 <li>the 2 procedures whose names begin with <code>peek</code></li>
-<li>the 7 procedures whose names begin with <code>write</code></li>
+<li>the 4 procedures whose names begin with <code>write</code></li>
 </ul>
-It therefore exports 255 identifiers.
+It therefore exports 251 identifiers.
 </p>
 
 <p>
