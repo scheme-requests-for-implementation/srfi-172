@@ -83,6 +83,26 @@ the only kinds of ports that can be created are string and
 bytevector ports.
 </p>
 
+<p><b>Warning:<b/> If an implementation coalesces two constants (quoted
+or self-evaluating) that are the same in the sense of <code>equal?</code>
+so that they also become constant in the sense of <i>eq?</i>, then a mutation
+of one constant will affect the value of the other unless they are marked
+immutable when read in; Scheme allows this but does not require it:</p>
+
+<pre>
+(define (foo x)
+  (set-car! '(a . b) x)
+  (car '(a . b)))
+; compile the file with MIT Scheme and load it
+(foo 5) => 5
+; instead of a because the two (a . b) constants are coalesced
+</pre>
+
+<p>Such changes provide a covert channel between the sandbox and an
+object outside it that has been made the same object under the covers,
+and there is nothing this SRFI can do about it.
+(Example due to Taylor Campbell.)</p>
+
 <h1>Specification</h1>
 
 <p>The library <code>(srfi 172)</code> includes the following 284 variables
