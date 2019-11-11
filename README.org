@@ -4,7 +4,7 @@
 
 This repository hosts [[https://srfi.schemers.org/srfi-172/][SRFI 172]]: Two Safer Subsets of R7RS, a [[https://srfi.schemers.org/][Scheme Request for Implementation]].
 
-This SRFI is in /draft/ status.
+This SRFI is in /final/ status.
 
 The full documentation for this SRFI can be found in the [[https://srfi.schemers.org/srfi-172/srfi-172.html][SRFI Document]].
 
