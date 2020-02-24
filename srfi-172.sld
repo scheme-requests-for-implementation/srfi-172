@@ -40,7 +40,7 @@
     read-error? read-line read-string read-u8 real? real-part remainder
     reverse round set! set-car! set-cdr! sin sqrt square string string?
     string<? string<=? string=? string>? string>=? string->list
-    string->number string->symbol string->utf8 string->vector string-append
+    string->number string->utf8 string->vector string-append
     string-ci<? string-ci<=? string-ci=? string-ci>? string-ci>=?
     string-copy string-copy! string-downcase string-fill! string-foldcase
     string-for-each string-length string-map string-ref string-set!
