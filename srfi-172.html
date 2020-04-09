@@ -27,6 +27,9 @@ John Cowan &lt;cowan@ccil.org&gt;
   <li>Draft #2 published: 2019-07-19</li>
   <li>Draft #3 published: 2019-10-20</li>
   <li>Finalized: 2019-11-10</li>
+  <li>Revised to fix errata:
+    <ul>
+      <li>2020-04-09 (Remove incorrect sentence in <a href="#implementation">implementation section</a>.)</li></ul></li>
 </ul>
 
 <h1>Abstract</h1>
@@ -431,23 +434,12 @@ A conforming implementation could be created entirely from this
 description.
 </p>
 
-<h1>Implementation</h1>
+<h1 id="implementation">Implementation</h1>
 
 <p>
 Implementations of the two libraries for Chibi can be found
-in the repository of this SRFI.
-They simply import the
-<code>(scheme base)</code>,
-<code>(scheme char)</code>,
-<code>(scheme complex)</code>,
-<code>(scheme cxr)</code>,
-<code>(scheme inexact)</code>,
-<code>(scheme lazy)</code>,
-<code>(scheme read)</code>,
-and
-<code>(scheme write)</code>
-libraries, and export the identifiers given above.
-</p>
+  in the repository of this SRFI and in
+  <a href="https://srfi.schemers.org/srfi-172/srfi-172.tgz">srfi-172.tgz</a>.</p>
 
 <h1>Copyright</h1>
 Copyright &copy; John Cowan (2019).
