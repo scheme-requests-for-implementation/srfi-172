@@ -4,6 +4,8 @@
 
 
 
+keywords: [[https://srfi.schemers.org/?keywords=miscellaneous][Miscellaneous]]
+
 This repository hosts [[https://srfi.schemers.org/srfi-172/][SRFI 172]]: Two Safer Subsets of R7RS, a [[https://srfi.schemers.org/][Scheme Request for Implementation]].
 
 This SRFI is in /final/ status.
