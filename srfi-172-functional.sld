@@ -27,7 +27,7 @@
     finite? floor floor/ floor-quotient floor-remainder force for-each
     gcd get-output-bytevector get-output-string guard if imag-part
     inexact inexact? infinite? integer? integer->char
-    lambda lcm length let let* let*-values letrec letrec* letrec-values
+    lambda lcm length let let* let*-values letrec letrec*
     let-values list list? list->string list->vector list-copy
     list-ref list-tail log magnitude make-bytevector make-list
     make-parameter make-polar make-promise make-rectangular make-string
